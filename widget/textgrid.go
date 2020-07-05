@@ -109,6 +109,10 @@ func (t *TextGrid) SetText(text string) {
 // Text returns the contents of the buffer as a single string (with no style information).
 // It reconstructs the lines by joining with a `\n` character.
 func (t *TextGrid) Text() string {
+	if len(t.Rows) == 0 {
+		return ""
+	}
+
 	count := len(t.Rows) - 1 // newlines
 	for _, row := range t.Rows {
 		count += len(row.Cells)
